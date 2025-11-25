@@ -59,6 +59,11 @@ body{
 li div{
     display: flex;
     align-items: center;
+    flex-shrink: 0;
+    text-wrap: wrap;
+}
+li label{
+    width: 300px ;
 }
 li div a{
     margin-right: 10px;
@@ -99,6 +104,9 @@ li span:hover{
     border-radius: 50%;
     margin-right: 15px;
     transition: .3s background-color,.3s border-color;
+}
+.task label{
+    margin-right: 10px;
 }
 .task input:hover{
     border-color: orangered;
@@ -200,11 +208,13 @@ form input:focus{
 /* ############################### media query #################################### */
 @media screen and (max-width:600px){
  .container{
-    top:150px;
     width: 350px;
  }
  .alertbox{
     width: 300px;
     left: calc(50% - 150px);
+ }
+ li label{
+    width: 150px ;
  }
 }

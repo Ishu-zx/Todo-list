@@ -19,9 +19,7 @@
             <h1>TODO-list</h1>
             <span></span>
         </div>
-        <%scrollbar = tasks.length>8?"scrollbar":""%>
-
-        <div class="task-container <%= scrollbar %>">
+        <div class="task-container">
             <ul class="tasks">
                 <% if(tasks.length == 0){%>
                     <div class="msg">
@@ -48,6 +46,7 @@
         </form>
     </div>
     <script>
+        // no task message overlay.....
         const taskInput = document.querySelector('form input')
         const alertbox = document.querySelector('.alertbox')
         const alertbtn = document.querySelector('.alertbtn')
@@ -64,6 +63,19 @@
             alertbox.style.transform='scale(0)'
             overlay.style.backgroundColor = 'rgba(0,0,0,0)'
             overlay.style.scale = 0
+        })
+
+        // add scrollbar
+        const tasks =document.querySelector('.tasks')
+        const taskContainer =document.querySelector('.task-container')
+        const tasksHeight =tasks.offsetHeight
+        if(tasksHeight >= 340){
+            taskContainer.classList.add('scrollbar')
+        }
+
+        // removing spaces at the start or end of input
+        taskInput.addEventListener('blur',(e)=>{
+            taskInput.value = taskInput.value.trim()
         })
     </script>
 </body>
