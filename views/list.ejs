@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-list</title>
+    <link rel="stylesheet" href="list-style.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="alertbox">
+            <div class="alertmsg">
+                <h2>Please enter a task!</h2>
+            </div>
+            <button class="btn alertbtn">Ok</button>
+        </div>
+    <div class="container">
+        <div class="heading">
+            <h1>TODO-list</h1>
+            <span></span>
+        </div>
+        <%scrollbar = tasks.length>8?"scrollbar":""%>
+
+        <div class="task-container <%= scrollbar %>">
+            <ul class="tasks">
+                <% if(tasks.length == 0){%>
+                    <div class="msg">
+                        <h2>No Task</h2>
+                    </div>
+                <%} %>
+                <%tasks.forEach((task,index)=>{%>
+                    <li class="task">
+                        <div>
+                            <input type="checkbox" id="checkbox<%=index%>">
+                            <label for="checkbox<%=index%>"><%=task%></label>
+                        </div>
+                        <div>
+                            <a class="editTask" href="/edit?task=<%=task%>&index=<%=index%>">Edit</a>
+                            <a href="/delete?task=<%=task%>"><span>X</span></a>
+                        </div>
+                    </li>
+                <%})%>
+            </ul>
+        </div>
+        <form action="/" method="POST">
+            <input type="text" placeholder="Enter Task" <%if(editvalue !=""){%> autofocus value="<%= editvalue %>"<% editvalue=""}%> name="task">
+            <button class="btn">Add</button>
+        </form>
+    </div>
+    <script>
+        const taskInput = document.querySelector('form input')
+        const alertbox = document.querySelector('.alertbox')
+        const alertbtn = document.querySelector('.alertbtn')
+        const overlay = document.querySelector('.overlay')
+        document.querySelector('form').addEventListener('submit',(e)=>{
+            if(taskInput.value==''){
+                alertbox.style.transform='scale(1)'
+                overlay.style.backgroundColor = 'rgba(0,0,0,0.6)'
+                overlay.style.scale = 1
+                e.preventDefault()
+            }
+        })
+        alertbtn.addEventListener('click',()=>{
+            alertbox.style.transform='scale(0)'
+            overlay.style.backgroundColor = 'rgba(0,0,0,0)'
+            overlay.style.scale = 0
+        })
+    </script>
+</body>
+</html>
