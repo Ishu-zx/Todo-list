@@ -40,13 +40,13 @@
                 <%})%>
             </ul>
         </div>
-        <form action="/" method="POST">
+        <form action="/add" method="POST">
             <input type="text" placeholder="Enter Task" <%if(editvalue !=""){%> autofocus value="<%= editvalue %>"<% editvalue=""}%> name="task">
             <button class="btn">Add</button>
         </form>
     </div>
     <script>
-        // no task message overlay.....
+        // 'no task enter' message overlay.....
         const taskInput = document.querySelector('form input')
         const alertbox = document.querySelector('.alertbox')
         const alertbtn = document.querySelector('.alertbtn')

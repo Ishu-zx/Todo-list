@@ -12,7 +12,7 @@ router.get('/',(req,res)=>{
 })
 
 // add task
-router.post('/',(req,res)=>{
+router.post('/add',(req,res)=>{
     const task = req.body.task
     if(editvalue==''){
         tasks.push(task)
@@ -21,7 +21,7 @@ router.post('/',(req,res)=>{
         index=null
         editvalue = ''
     }
-    res.render('list',{tasks,editvalue})
+    res.redirect('/')
 })
 
 // edit task
